@@ -5,3 +5,4 @@ EnvLemmas.v
 BlocksWorld.v
 Sokoban.v
 Notes.v
+rules_test.v
