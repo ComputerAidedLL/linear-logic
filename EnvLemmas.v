@@ -41,8 +41,8 @@ Lemma eqLinProp_refl : forall (A : LinProp), A ~= A.
 Proof.
   intros. unfold eqLinProp. induction A; simpl; try reflexivity;
                             try (rewrite IHA1; rewrite IHA2; reflexivity); try assumption.
-  apply Nat.eqb_refl.  admit.
-Admitted.
+  apply Nat.eqb_refl.
+Qed.
 
 Lemma eqLinProp_sym : forall (A B : LinProp), A ~= B -> B ~= A.
 Proof.

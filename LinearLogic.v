@@ -46,6 +46,8 @@ Fixpoint eqLPC (f1 f2 : LinProp) : bool :=
       andb (eqLPC f1_1 f2_1) (eqLPC f1_2 f2_2)
     | With f1_1 f1_2, With f2_1 f2_2 =>
       andb (eqLPC f1_1 f2_1) (eqLPC f1_2 f2_2)
+    | Plus f1_1 f1_2, Plus f2_1 f2_2 =>
+      andb (eqLPC f1_1 f2_1) (eqLPC f1_2 f2_2)
     | _, _ => false
   end.
 
