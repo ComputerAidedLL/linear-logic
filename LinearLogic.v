@@ -3,7 +3,7 @@ Defines the notation for them and for manipulating the environment
 (multiset of linear props). *)
 
 Require Export Coq.Sets.Multiset.
-Require Import Coq.Arith.EqNat.
+Require Import Coq.Arith.PeanoNat.
 Set Implicit Arguments.
 
 Definition Var : Type := nat.
@@ -38,7 +38,7 @@ Fixpoint eqLPC (f1 f2 : LinProp) : bool :=
     | One, One => true
     | Zero, Zero => true
     | Top, Top => true
-    | LProp v1, LProp v2 => beq_nat v1 v2
+    | LProp v1, LProp v2 => Nat.eqb v1 v2
     | Bang f1_1, Bang f2_1 => eqLPC f1_1 f2_1
     | Implies f1_1 f1_2, Implies f2_1 f2_2 =>
       andb (eqLPC f1_1 f2_1) (eqLPC f1_2 f2_2)

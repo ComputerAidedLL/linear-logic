@@ -4,7 +4,7 @@ Lemmas about manipulating the environment, plus some tactics for automatically d
 
 Require Import LinearLogic.
 Require Import Setoid.
-Require Import Lia.
+Require Import PeanoNat Lia.
 Require Import String.
 
 (* Copied from BlockWorld *)
@@ -38,25 +38,25 @@ Add Parametric Relation A : (multiset A) (@meq A)
 Notation "P ~= Q" := (eqLinProp P Q) (at level 60, right associativity).
 
 Lemma eqLinProp_refl : forall (A : LinProp), A ~= A.
-Proof. 
+Proof.
   intros. unfold eqLinProp. induction A; simpl; try reflexivity;
                             try (rewrite IHA1; rewrite IHA2; reflexivity); try assumption.
-  symmetry. apply EqNat.beq_nat_refl.  admit.
+  apply Nat.eqb_refl.  admit.
 Admitted.
 
 Lemma eqLinProp_sym : forall (A B : LinProp), A ~= B -> B ~= A.
-Proof. 
+Proof.
   intros.
   unfold eqLinProp in *.
   induction A; induction B; simpl; try reflexivity; inversion H.
 
-  symmetry in H1. apply EqNat.beq_nat_eq in H1. rewrite H1. reflexivity.
+  apply Nat.eqb_eq in H1. rewrite H1. reflexivity.
   rewrite H1. admit.
 
 Admitted.
 
 Lemma eqLinProp_trans : forall (A B C : LinProp), A ~= B -> B ~= C -> A ~= C.
-Proof. 
+Proof.
 Admitted.
 
 Add Parametric Relation : (LinProp) (eqLinProp)
@@ -78,7 +78,7 @@ Lemma setoid_rewrite_test_sequent : forall (s: multiset LinProp),
 Proof.
   intros.
   setoid_rewrite H.             (* works *)
-Admitted.  
+Admitted.
 
 (* --------------- *)
 
@@ -115,10 +115,10 @@ Lemma unstick : forall (A B C : LinProp) (e : env),
                      (A :: B :: e) |- C ->
                      ((A ** B) :: e) |- C.
 Proof.
-  intros. 
+  intros.
   apply Times_L with (A := A) (B := B).
   inSet_clear. destruct eq_neq_LinProp. lia. exfalso. apply n. apply eqLinProp_refl.
-  
+
   assert ((A :: B :: ((A ** B) :: e) \ (A ** B)) == (A :: B :: e)).
   unfold setMinus. meq_clear. destruct (eq_neq_LinProp (A ** B) a). lia. lia.
 
@@ -129,7 +129,7 @@ Qed.
 Lemma unstick' :  forall (A B : LinProp) (env : env),
                    (A ** B) :: env = A :: B :: env. 
 Proof.
-  intros. 
+  intros.
 Admitted.
 
 Lemma stick : forall (A B C : LinProp) (e : env),
@@ -137,7 +137,7 @@ Lemma stick : forall (A B C : LinProp) (e : env),
                      (A :: B :: e) |- C.
 Proof.
   intros.
-  
+
   inversion H; subst; clear H.
   unfold meq in *.              (* clearly true, since C must be A ** B here... *)
   admit.
@@ -165,7 +165,7 @@ Proof.
 
   inversion H; subst. admit. admit. admit. admit.
   (* why is this so hard to prove? it is true *)
-  
+
 Admitted.
 
 Lemma swap' : forall (A B C G : LinProp),
