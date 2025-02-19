@@ -38,7 +38,7 @@ Some optimizations:
 Require Import LinearLogic.
 Require Import EnvLemmas.
 Require Import BlocksWorld.
-Require Import Ascii String EqNat NArith.
+From Stdlib Require Import Ascii String EqNat NArith.
 Open Scope string_scope.
 
 Definition loc : Type := prod nat nat.

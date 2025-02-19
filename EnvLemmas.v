@@ -3,9 +3,9 @@
 Lemmas about manipulating the environment, plus some tactics for automatically discharging environment proofs. *)
 
 Require Import LinearLogic.
-Require Import Setoid.
-Require Import PeanoNat Lia.
-Require Import String.
+From Stdlib Require Import Setoid.
+From Stdlib Require Import PeanoNat Lia.
+From Stdlib Require Import String.
 
 (* Copied from BlockWorld *)
 Definition Block : Type := string.

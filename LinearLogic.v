@@ -2,8 +2,8 @@
 Defines the notation for them and for manipulating the environment 
 (multiset of linear props). *)
 
-Require Export Coq.Sets.Multiset.
-Require Import Coq.Arith.PeanoNat.
+From Stdlib Require Export Multiset.
+From Stdlib Require Import PeanoNat.
 Set Implicit Arguments.
 
 Definition Var : Type := nat.

@@ -17,9 +17,9 @@ can be transformed into
 
 Require Import LinearLogic.
 Require Import EnvLemmas.
-Require Import Coq.Strings.String.
-Require Import Lia.
-Require Import Coq.Logic.FunctionalExtensionality.
+From Stdlib Require Import String.
+From Stdlib Require Import Lia.
+From Stdlib Require Import FunctionalExtensionality.
 Open Scope string_scope.
 
 
