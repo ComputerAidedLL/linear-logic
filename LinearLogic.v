@@ -24,11 +24,11 @@ Inductive LinProp : Type :=
   (* Exponentials *)
   | Bang : LinProp -> LinProp.
 
-Notation "A -o B" := (Implies A B) (at level 98, left associativity).
-Notation "A ** B" := (Times A B) (at level 98, left associativity).
+Notation "A -o B" := (Implies A B) (at level 81, left associativity).
+Notation "A ** B" := (Times A B) (at level 81, left associativity).
 Notation "A && B" := (With A B) (at level 40, left associativity).
 Notation "A ++ B" := (Plus A B) (at level 60, right associativity). (* watch out *)
-Notation "! A" := (Bang A) (at level 98, left associativity).
+Notation "! A" := (Bang A) (at level 31, left associativity).
 
 Definition env : Type := multiset LinProp.
 
@@ -77,14 +77,14 @@ Definition setMinus (m : multiset LinProp) (e : LinProp) : multiset LinProp :=
                             then multiplicity m x - 1
                             else multiplicity m x).
 
-Notation "{{ Z }}" := (singleton Z) (at level 5, Z at level 99, right associativity).
+Notation "{{ Z }}" := (singleton Z) (at level 0, Z at level 99, right associativity).
 Notation "S == T" := (meq S T) (at level 1, left associativity).
 Notation "g1 'U' g2" := (munion g1 g2) (at level 100, right associativity).
 Notation "Z :: g" := (munion (singleton Z) g) (at level 60, right associativity).
 Notation "x ∈ S" := (inSet S x) (at level 60, right associativity).
 Notation "S \ x" := (setMinus S x) (at level 60, right associativity).
 
-Reserved Notation "A '|-' B" (at level 3).
+Reserved Notation "A '|-' B" (at level 95).
 
 (* Here, (->) (Coq implication) denotes (--------) (logic "lines") *)
 (* convention: env name lowercase, prop name uppercase *)
